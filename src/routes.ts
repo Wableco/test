@@ -1,4 +1,4 @@
-import express, { Router, Response, Request } from "express";
+import express, { Router, Response, Request, response } from "express";
 import { io } from "socket.io-client";  // Cliente do Socket.IO para conectar ao servidor WebSocket
 
 // Conectando-se ao servidor WebSocket na rota '/foo'
@@ -17,6 +17,10 @@ router.get("/hc/:id", (req: Request, res: Response) => {
     res.json({ message: `Resposta do WebSocket: ${response}` });
   });
 });
+
+router.get("/", (req: Request, res: Response)=>{
+    res.json({message: "ok"})
+})
 
 // Usando o router no servidor Express
 app.use('/test', router);

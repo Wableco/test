@@ -25,6 +25,6 @@ ws.of("/foo").on("connection", (socket: Socket) => {
 });
 
 // Inicia o servidor HTTP na porta 3000
-serv.listen(3000, () => {
+serv.listen(5000, () => {
   console.log('Servidor WebSocket e Express instanciado na porta 3000.');
 });
