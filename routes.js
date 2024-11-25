@@ -39,11 +39,10 @@ const socket_io_client_1 = require("socket.io-client");
 const ws = (0, socket_io_client_1.io)("http://localhost:3000/foo");
 const app = (0, express_1.default)();
 const router = (0, express_1.Router)();
-router.get("/hc", (req, res) => {
-    ws.emit("join", 'oi123');
-    ws.on('join', (data) => {
-        res.json({ message: 123, obj: data, status: 200 });
+router.get("/hc/:id", (req, res) => {
+    ws.emit("join", req.params.id, (response) => {
+        res.json({ message: response });
     });
 });
-app.use(router);
+app.use('/test', router);
 exports.default = app;

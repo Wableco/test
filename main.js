@@ -9,12 +9,8 @@ const http_1 = __importDefault(require("http"));
 const serv = http_1.default.createServer(routes_1.default);
 const ws = new socket_io_1.Server(serv);
 ws.of("/foo").on("connection", (ws) => {
-    ws.on("join", (data) => {
-        if (data)
-            console.log(data);
-        else
-            console.log("não tem nenhum dado, mas oi!!");
-        ws.emit('join', 'olá123');
+    ws.on("join", (data, callback) => {
+        callback(data);
     });
 });
 serv.listen(3000, () => {
