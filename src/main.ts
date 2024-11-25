@@ -7,10 +7,8 @@ const serv = http.createServer(app);
 const ws = new Server(serv);
 
 ws.of("/foo").on("connection", (ws: Socket) => {
-  ws.on("join", (data: any) => {
-    if (data) console.log(data);
-    else console.log("não tem nenhum dado, mas oi!!");
-    ws.emit('join','olá123')
+  ws.on("join", (data: any, callback) => {
+    callback(data)
   });
 });
 

@@ -8,13 +8,12 @@ const app = express();
 
 const router = Router();
 
-router.get("/hc", (req: Request, res: Response) => {
-  ws.emit("join", 'oi123' );
-  ws.on('join', (data: any)=>{
-    res.json({message: 123, obj: data, status: 200})
-  })
+router.get("/hc/:id", (req: Request, res: Response) => {
+  ws.emit("join", req.params.id, (response: any)=>{
+    res.json({message: response })
+  } );
 });
 
-app.use(router);
+app.use('/test',router);
 
 export default app;
